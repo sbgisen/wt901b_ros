@@ -1,9 +1,8 @@
-## wt901B_ros
+## wt901b_ros
 
 リファクタリング頑張って
 
 [TODO]
-- ros package nameを小文字にする
 - portとbaurateをParamにする
 - sendデバッグする
 - 高さしかだしません
@@ -35,10 +34,10 @@ rostopic pub --once /imu_reset_height std_msgs/Bool True
 
 ```
 cd ~/ros/src/
-git clone <URL>
-cd wt901B_ros
+git clone git@github.com:sbgisen/wt901b_ros.git
+cd wt901b_ros
 catkin bt
-roslaunch wt901B_ros wt901B_ros.launch 
+roslaunch wt901b_ros wt901b_ros.launch 
 ```
 
 ## Include Launch file

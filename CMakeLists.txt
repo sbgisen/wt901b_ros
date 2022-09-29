@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(wt901B_ros)
+project(wt901b_ros)
 
 #############
 ## Package ##
@@ -17,11 +17,11 @@ catkin_package()
 ###########
 
 include_directories(
-# include
+  include
   ${catkin_INCLUDE_DIRS}
 )
 
-add_executable(${PROJECT_NAME}_node src/wt901b_ros.cpp)
+add_executable(${PROJECT_NAME}_node src/wt901b_ros.cpp src/serial_communication.cpp)
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(${PROJECT_NAME}_node

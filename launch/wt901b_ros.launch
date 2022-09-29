@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<launch>
+
+	<node pkg="wt901b_ros" type="wt901b_ros_node" name="wt901b_ros" output="screen">
+		<param name="port_name" value="/dev/ttyIMU"/>
+    <param name="baurate" value="9600"/>
+	</node>
+
+	
+</launch>
