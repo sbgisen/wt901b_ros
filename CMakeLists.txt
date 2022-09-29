@@ -9,8 +9,23 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  geometry_msgs
+  message_generation #この行を追加
 )
-catkin_package()
+
+add_message_files(
+  FILES
+  wt901b.msg
+)
+
+generate_messages(
+  DEPENDENCIES
+  geometry_msgs
+)
+
+catkin_package(CATKIN_DEPENDS roscpp rospy std_msgs geometry_msgs message_runtime)
+
+
 
 ###########
 ## Build ##

@@ -16,12 +16,31 @@
 #include "ros/ros.h"
 #include "std_msgs/Int32.h"
 #include "std_msgs/Bool.h"
+#include <std_msgs/Float64MultiArray.h>
 
+std::vector<float> imu_data_(15,0.0);
 
-// class Wt901b {
-// private:
-
-// public:
-// };
+/*
+rosmsg show wt901b_ros/wt901b 
+std_msgs/Header header
+  uint32 seq
+  time stamp
+  string frame_id
+geometry_msgs/Vector3 angular_velocity
+  float64 x
+  float64 y
+  float64 z
+geometry_msgs/Vector3 linear_acceleration
+  float64 x
+  float64 y
+  float64 z
+geometry_msgs/Vector3 magnetic_field
+  float64 x
+  float64 y
+  float64 z
+float64 temperature
+float64 pressure
+int32 height
+*/
 
 #endif //WT901B_ROS

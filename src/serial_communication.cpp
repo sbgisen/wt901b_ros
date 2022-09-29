@@ -177,15 +177,22 @@ int Serial_Communication::ParseData(char chr)
                 for (i=0;i<3;i++) linear_acceleraion_a[i] = (float)sData[i]/32768.0*16.0*9.8;
                 time(&now);
                 ROS_DEBUG("T:%s Linear Acceleraion:%6.3f %6.3f %6.3f ",asctime(localtime(&now)),linear_acceleraion_a[0],linear_acceleraion_a[1],linear_acceleraion_a[2]);                
+                imu_data_temp_[LINEAR_ACCEL_X] = linear_acceleraion_a[0];
+                imu_data_temp_[LINEAR_ACCEL_Y] = linear_acceleraion_a[1];
+                imu_data_temp_[LINEAR_ACCEL_Z] = linear_acceleraion_a[2];
                 break;
             case 0x52:
                 //angular(rad/s)
                 for (i=0;i<3;i++) angular_velocity_w[i] = (float)sData[i]/32768.0*2000.0/180.0*3.141593;
                 ROS_DEBUG("Angular Velocity:%7.3f %7.3f %7.3f ",angular_velocity_w[0],angular_velocity_w[1],angular_velocity_w[2]);					
+                imu_data_temp_[ANGULAR_VEL_X] = angular_velocity_w[0];
+                imu_data_temp_[ANGULAR_VEL_Y] = angular_velocity_w[1];
+                imu_data_temp_[ANGULAR_VEL_Z] = angular_velocity_w[2];
                 break;
             case 0x53:
                 for (i=0;i<3;i++) angle[i] = (float)sData[i]/32768.0*3.141593;
                 ROS_DEBUG("Angle:%7.3f %7.3f %7.3f ",angle[0],angle[1],angle[2]);
+                // imu_data_temp[ANGLE] = angle[0];
                 break;
             case 0x54:
                 for (i=0;i<3;i++) magnetic_h[i] = (float)sData[i]/100000000.0;
@@ -208,7 +215,7 @@ int Serial_Communication::ParseData(char chr)
     return height; 		
 }
 
-int Serial_Communication::recv_loop(){
+int Serial_Communication::recv_loop(std::vector<float>& imu_status){
     ret = recv_data(fd,r_buf,44);
     if(ret == -1){
         fprintf(stderr,"uart read failed!\n");
@@ -223,6 +230,18 @@ int Serial_Communication::recv_loop(){
         printf("height: %d", height_ret);
         // pub_height.publish(msg);
     }
+    imu_status[ANGULAR_VEL_X] = 0.0;
+    imu_status[ANGULAR_VEL_Y] = 0.0;
+    imu_status[ANGULAR_VEL_Z] = 0.0;
+    imu_status[LINEAR_ACCEL_X] = 0.0;
+    imu_status[LINEAR_ACCEL_Y] = 0.0;
+    imu_status[LINEAR_ACCEL_Z] = 0.0;
+    imu_status[MAGNETIC_X] = 0.0;
+    imu_status[MAGNETIC_Y] = 0.0;
+    imu_status[MAGNETIC_Z] = 0.0;
+    imu_status[TEMPLATURE] = 0.0;
+    imu_status[PRESSURE] = 0.0;
+    imu_status[HEIGHT] = 0.0;
     return 0;
 }
 
