@@ -3,7 +3,8 @@
 
 	<node pkg="wt901b_ros" type="wt901b_ros_node" name="wt901b_ros" output="screen">
 		<param name="port_name" value="/dev/ttyIMU"/>
-    <param name="baurate" value="9600"/>
+    	<param name="baurate" value="9600"/>
+		<param name="frame_id" value="imu_link"/>
 	</node>
 
 	

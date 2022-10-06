@@ -36,6 +36,13 @@ int main(int argc, char **argv)
     // ros::Publisher pub_magnetic = nh.advertise<std_msgs::Int32>("/imu_magnetic", 1000);
     // ros::Publisher pub_temprature = nh.advertise<std_msgs::Int32>("/imu_temprature", 1000);
     // ros::Publisher pub_pressure = nh.advertise<std_msgs::Int32>("/imu_pressure", 1000);
+
+
+    ros::Publisher pub_imu_data = nh.advertise<sensor_msgs::Imu><"/imu_data", 1000>
+    ros::Publisher pub_imu_mag = nh.advertise<sensor_msgs::MagneticField><"/imu_mag", 1000>
+    ros::Publisher pub_imu_temprature = nh.advertise<sensor_msgs::Temperature><"/imu_temp", 1000>
+    // ros::Publisher pub_imu_atmos = nh.advertise<sensor_msgs::Imu><"/imu_atmos", 1000>
+
     // Subscriber
     ros::Subscriber sub_reset_height = nh.subscribe<std_msgs::Bool>("/imu_reset_height", 1000, resetHeghtCallback);
 

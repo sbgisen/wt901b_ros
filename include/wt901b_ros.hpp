@@ -18,6 +18,14 @@
 #include "std_msgs/Bool.h"
 #include <std_msgs/Float64MultiArray.h>
 
+#include <sensor_msgs/Imu.h>
+// http://docs.ros.org/en/melodic/api/sensor_msgs/html/msg/Imu.html
+
+#include <sensor_msgs/MagneticField.h>
+// http://docs.ros.org/en/melodic/api/sensor_msgs/html/msg/MagneticField.html
+
+
+
 std::vector<float> imu_data_(15,0.0);
 
 /*

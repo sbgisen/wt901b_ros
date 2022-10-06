@@ -1,5 +1,7 @@
 ## wt901b_ros
 
+A ROS driver for the 10-axis sensor IMU WitMotion WT901B.
+
 リファクタリング頑張って
 
 [TODO]
@@ -16,12 +18,17 @@ I use Sample code -> raspberry -> SampleLinux
 ## Set Driver
 See docbase...
 
+## Parameters
+- `port`(default:'/dev/ttyIMU') - path to IMU's usb port
+- `frame_id`(default:'imu_link') - the frame name
+
+
 ## Pub/Sub
 
-#### Pub
+#### Publishes
 `/imu_height`: Int32, 大体の高さをだす。時間経過で上がっていく
 
-#### Sub
+#### Subscribes
 `/imu_reset_height`: Bool, pubすると現在の高さを0にする
 高さを0にするには`{0xFF, 0xAA, 0x01, 0x03, 0x00}`をシリアル通信でsendしてもできる
 
